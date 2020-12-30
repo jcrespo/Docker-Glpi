@@ -10,6 +10,7 @@ RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
 
 RUN apt update && apt upgrade -y --no-install-recommends
 RUN apt install -y apache2 \
+    wget \
     php7.4 \
     php7.4-json \
     php7.4-mbstring \
@@ -29,10 +30,12 @@ RUN apt install -y apache2 \
 
 RUN apt clean
 
-WORKDIR /var/www/html/
-RUN rm index.html
-COPY ./src/glpi .
-RUN chown -R www-data:www-data .
+RUN wget https://github.com/glpi-project/glpi/releases/download/9.5.3/glpi-9.5.3.tgz \
+    && tar zxvf glpi-9.5.3.tgz -C /var/www/html/ --strip 1 \
+    && rm glpi-9.5.3.tgz
+
+RUN rm /var/www/html/index.html
+RUN chown -R www-data:www-data /var/www/html/
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 # expose ports
