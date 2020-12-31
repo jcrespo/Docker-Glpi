@@ -38,6 +38,10 @@ RUN rm /var/www/html/index.html
 RUN chown -R www-data:www-data /var/www/html/
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
+# volumes
+VOLUME /var/www/html/plugins
+VOLUME /var/www/html/files
+
 # expose ports
 EXPOSE 80
 
