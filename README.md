@@ -44,8 +44,8 @@ services:
      ports:
        - "80:80"
      volumes:
-       - /path/to/files:/config
-       - /path/to/plugins:/data/tvshows
+       - /path/to/files:/var/www/files
+       - /path/to/plugins:/var/www/plugins
      restart: unless-stopped
 ```
 
