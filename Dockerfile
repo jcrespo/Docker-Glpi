@@ -30,17 +30,18 @@ RUN apt install -y apache2 \
 
 RUN apt clean
 
+# download, uncompress and copy
 RUN wget https://github.com/glpi-project/glpi/releases/download/9.5.3/glpi-9.5.3.tgz \
     && tar zxvf glpi-9.5.3.tgz -C /var/www/html/ --strip 1 \
     && rm glpi-9.5.3.tgz
 
-RUN rm /var/www/html/index.html
+# clean and set permissions
+RUN rm -f /var/www/html/index.html
 RUN chown -R www-data:www-data /var/www/html/
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
-# volumes
-VOLUME /var/www/html/plugins
-VOLUME /var/www/html/files
+# volume
+VOLUME /var/www/html
 
 # expose ports
 EXPOSE 80

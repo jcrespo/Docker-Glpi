@@ -44,8 +44,7 @@ services:
      ports:
        - "80:80"
      volumes:
-       - /path/to/files:/var/www/files
-       - /path/to/plugins:/var/www/plugins
+       - /path/to/html:/var/www/html
      restart: unless-stopped
 ```
 
