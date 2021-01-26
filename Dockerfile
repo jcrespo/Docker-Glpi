@@ -28,20 +28,22 @@ RUN apt install -y apache2 \
     php7.4-zip \
     php7.4-bz2
 
+
+# clean
 RUN apt clean
+RUN rm -f /var/www/html/index.html
 
 # download, uncompress and copy
 RUN wget https://github.com/glpi-project/glpi/releases/download/9.5.3/glpi-9.5.3.tgz \
     && tar zxvf glpi-9.5.3.tgz -C /var/www/html/ --strip 1 \
     && rm glpi-9.5.3.tgz
 
-# clean and set permissions
-RUN rm -f /var/www/html/index.html
+# set permissions
 RUN chown -R www-data:www-data /var/www/html/
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 # volume
-VOLUME /var/www/html
+VOLUME /var/www/html/
 
 # expose ports
 EXPOSE 80
