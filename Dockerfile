@@ -38,14 +38,13 @@ RUN wget https://github.com/glpi-project/glpi/releases/download/9.5.3/glpi-9.5.3
     && tar zxvf glpi-9.5.3.tgz -C /var/www/html/ --strip 1 \
     && rm glpi-9.5.3.tgz
 
-# set permissions
-RUN chown -R www-data:www-data /var/www/html/
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+RUN chown -R www-data:www-data /var/www/html/
 
 # volume
-VOLUME /var/www/html/
+VOLUME ["/var/www/html"]
 
-# expose ports
+# port
 EXPOSE 80
 
 ENTRYPOINT ["/usr/sbin/apachectl"]

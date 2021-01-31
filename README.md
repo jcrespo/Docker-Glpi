@@ -29,7 +29,7 @@ services:
    db:
      image: mysql:5.7
      volumes:
-       - ./mysql:/var/lib/mysql
+       - mysql:/var/lib/mysql:rw
      restart: unless-stopped
      environment:
        MYSQL_ROOT_PASSWORD: glpi
@@ -44,7 +44,7 @@ services:
      ports:
        - "80:80"
      volumes:
-       - /path/to/html:/var/www/html
+       - glpi:/var/www/html:rw
      restart: unless-stopped
 ```
 
