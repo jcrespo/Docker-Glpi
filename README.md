@@ -46,6 +46,10 @@ services:
      volumes:
        - glpi:/var/www/html:rw
      restart: unless-stopped
+
+volumes:
+  mysql:
+  glpi:
 ```
 
 ## Application Setup
