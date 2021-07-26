@@ -34,9 +34,9 @@ RUN apt clean
 RUN rm -f /var/www/html/index.html
 
 # download, uncompress and copy
-RUN wget https://github.com/glpi-project/glpi/releases/download/9.5.3/glpi-9.5.3.tgz \
-    && tar zxvf glpi-9.5.3.tgz -C /var/www/html/ --strip 1 \
-    && rm glpi-9.5.3.tgz
+RUN wget https://github.com/glpi-project/glpi/releases/download/9.5.5/glpi-9.5.5.tgz \
+    && tar zxvf glpi-9.5.5.tgz -C /var/www/html/ --strip 1 \
+    && rm glpi-9.5.5.tgz
 
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 RUN chown -R www-data:www-data /var/www/html/
