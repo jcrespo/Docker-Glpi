@@ -1,5 +1,6 @@
 FROM ubuntu:21.04
-LABEL maintainer="Jcrespo - franciscojavier.crespo@gmail.com"
+
+LABEL maintainer="Javier Crespo - javi@javiercrespo.es"
 
 # environment settings
 ARG DEBIAN_FRONTEND="noninteractive"
