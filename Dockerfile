@@ -1,12 +1,10 @@
-FROM ubuntu:21.04
-
-LABEL maintainer="Javier Crespo - javi@javiercrespo.es"
+FROM ubuntu:23.10
 
 # environment settings
-ARG DEBIAN_FRONTEND="noninteractive"
+#ARG DEBIAN_FRONTEND="noninteractive"
 ENV TZ=Europe/Madrid
-ENV PHP_VERSION=7.4
-ENV GLPI_VERSION=9.5.6
+ENV PHP_VERSION=8.2
+ENV GLPI_VERSION=10.0.11
 
 RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
 
@@ -14,7 +12,7 @@ RUN apt update && apt upgrade -y --no-install-recommends
 RUN apt install -y apache2 \
     wget \
     php$PHP_VERSION \
-    php$PHP_VERSION-json \
+    #php$PHP_VERSION-json \
     php$PHP_VERSION-mbstring \
     php$PHP_VERSION-mysql \
     php$PHP_VERSION-cli \
